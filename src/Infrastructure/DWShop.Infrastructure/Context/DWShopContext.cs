@@ -9,5 +9,6 @@ namespace DWShop.Infrastructure.Context
         {
         }
         public DbSet<Catalog> Catalogs { get; set; }
+        public DbSet<Basket> Baskets { get; set; }
     }
 }

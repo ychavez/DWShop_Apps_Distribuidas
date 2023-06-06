@@ -16,9 +16,9 @@ namespace DWShop.Service.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-
-            builder.Services.AddDbContext<DWShopContext>(options =>
-            options.UseSqlServer(x => builder.Configuration.GetConnectionString("DefaultConnection")));
+          
+            builder.Services.AddDbContext<DWShopContext>(options => 
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
