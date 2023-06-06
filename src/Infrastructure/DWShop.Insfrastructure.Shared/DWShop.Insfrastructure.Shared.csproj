@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\DWShop.Application\DWShop.Application.csproj" />
+    <ProjectReference Include="..\DWShop.Infrastructure\DWShop.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
