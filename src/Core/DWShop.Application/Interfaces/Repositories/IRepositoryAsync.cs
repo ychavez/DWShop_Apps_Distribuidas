@@ -8,7 +8,7 @@ namespace DWShop.Application.Interfaces.Repositories
     {
         DbSet<T> Entities { get; }
 
-        Task<T> GetByIdAsync(TId id);
+        Task<T?> GetByIdAsync(TId id);
 
         Task<List<T>> GetAllAsync();
 
