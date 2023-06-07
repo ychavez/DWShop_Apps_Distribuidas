@@ -1,6 +1,6 @@
-
 using DWShop.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using DWShop.Application.Extensions;
 
 namespace DWShop.Service.Api
 {
@@ -16,7 +16,8 @@ namespace DWShop.Service.Api
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-          
+            builder.Services.AddApplicationLayer();
+
             builder.Services.AddDbContext<DWShopContext>(options => 
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 

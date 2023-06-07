@@ -1,25 +1,22 @@
-﻿using DWShop.Infrastructure.Context;
-using DWShop.Infrastructure.Migrations;
+﻿using DWShop.Application.Features.Catalog.Queries;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace DWShop.Service.Api.Controllers
 {
-    [Route("api/v1/[Controller]")]
     [ApiController]
-    
-    public class CatalogController:ControllerBase
+    [Route("api/[controller]")]
+    public class CatalogController: ControllerBase
     {
-        private readonly DWShopContext dWShopContext;
+        private readonly IMediator mediator;
 
-        public CatalogController(DWShopContext dWShopContext)
+        public CatalogController(IMediator mediator)
         {
-            this.dWShopContext = dWShopContext;
+            this.mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<catalog>>> get()
-            =>Ok( await dWShopContext.Catalogs.ToListAsync());
-
+        [HttpGet("/Saludo")]
+        public async Task<ActionResult<string>> getSaludo([FromQuery] GetSaludoQuery query)
+            => Ok(await mediator.Send(query));
     }
 }
