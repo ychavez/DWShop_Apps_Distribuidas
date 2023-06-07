@@ -1,4 +1,4 @@
-using DWShop.Infrastructure.Context;
+﻿using DWShop.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using DWShop.Application.Extensions;
 
@@ -42,14 +42,14 @@ namespace DWShop.Service.Api
 
 /*
  * 
- * 1.- use los principos de la arquitectura limpia
+ * 1.- use los principos de la arquitectura limpia ☻
  * 2.- queremos implementar los siguientes movimientos
  * 3.- Catalogo de productos, Canasta de productos, Lista de checkout
  * 4.- queremos tener campos de auditoria automatica
  * 5.- queremos tener una tabla de auditoria profunda
- * 6.- usar SQL Server con EntityFramework
- * 7.- y utilizar los siguientes patrones de dise�o
- *     CQRS, Repository, Unit of work
+ * 6.- usar SQL Server con EntityFramework ☻
+ * 7.- y utilizar los siguientes patrones de diseño
+ *     CQRS, Repository, Unit of work ♥
  * 8.- modular, no dependencias y no codigo espagetti    
  * 
  * */

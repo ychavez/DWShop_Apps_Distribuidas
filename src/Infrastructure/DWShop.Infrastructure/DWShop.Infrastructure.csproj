@@ -20,4 +20,8 @@
     <ProjectReference Include="..\..\Shared\DWShop.Shared\DWShop.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repositories\" />
+  </ItemGroup>
+
 </Project>

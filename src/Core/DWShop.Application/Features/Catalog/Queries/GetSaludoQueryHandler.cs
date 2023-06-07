@@ -11,7 +11,6 @@ namespace DWShop.Application.Features.Catalog.Queries
                 return await Result<string>.FailAsync("No se puede saludar a Julian");
 
             return await Result<string>.SuccessAsync($"Hola {request.Nombre}","");
-
         }
     }
 }
