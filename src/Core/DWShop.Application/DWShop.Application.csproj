@@ -26,7 +26,6 @@
     <Folder Include="Features\Catalog\Commands\" />
     <Folder Include="Mappings\" />
     <Folder Include="Validators\" />
-    <Folder Include="Responses\" />
   </ItemGroup>
 
 </Project>

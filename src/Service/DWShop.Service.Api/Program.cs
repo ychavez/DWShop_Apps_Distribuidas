@@ -1,6 +1,7 @@
 ﻿using DWShop.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using DWShop.Application.Extensions;
+using DWShop.Infrastructure.Extensions;
 
 namespace DWShop.Service.Api
 {
@@ -17,6 +18,7 @@ namespace DWShop.Service.Api
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
             builder.Services.AddApplicationLayer();
+            builder.Services.AddRepositories();
 
             builder.Services.AddDbContext<DWShopContext>(options => 
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
