@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography.X509Certificates;
+﻿using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using AutoMapper;
 using DWShop.Application.Interfaces.Repositories;
 using DWShop.Application.Responses;
 using DWShop.Shared.Wrapper;
@@ -7,29 +9,24 @@ using CatalogEntity = DWShop.Domain.Entities.Catalog;
 
 namespace DWShop.Application.Features.Catalog.Queries
 {
-    public class GetCatalogQueryHandler : IRequestHandler<GetCatalogQuery, 
+    public class GetCatalogQueryHandler : IRequestHandler<GetCatalogQuery,
         IResult<IEnumerable<ProductResponse>>>
     {
         private readonly IRepositoryAsync<CatalogEntity, int> _repository;
+        private readonly IMapper _mapper;
 
-        public GetCatalogQueryHandler(IRepositoryAsync<CatalogEntity, int> repository)
+        public GetCatalogQueryHandler(IRepositoryAsync<CatalogEntity, int> repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         public async Task<IResult<IEnumerable<ProductResponse>>> Handle(GetCatalogQuery request, CancellationToken cancellationToken)
         {
-            var products  = await _repository.GetAllAsync();
+            var products = await _repository.GetAllAsync();
 
-            return await Result<List<ProductResponse>>.SuccessAsync(products
-                .Select(x => new ProductResponse
-                {
-                    Category = x.Category,
-                    Description = x.Description,
-                    Name = x.Name,
-                    PhotoURL = x.PhotoURL,
-                    Price = x.Price,
-                    Summary = x.Summary
-                }).ToList(), "");
+            var productsResponse = _mapper.Map<List<ProductResponse>>(products);
+
+            return await Result<List<ProductResponse>>.SuccessAsync(productsResponse, "");
         }
     }
 }

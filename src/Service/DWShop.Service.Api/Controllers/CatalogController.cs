@@ -1,4 +1,5 @@
-﻿using DWShop.Application.Features.Catalog.Queries;
+﻿
+using DWShop.Application.Features.Catalog.Queries;
 using DWShop.Application.Responses;
 using DWShop.Shared.Wrapper;
 using Microsoft.AspNetCore.Mvc;
