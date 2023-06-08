@@ -25,10 +25,6 @@ namespace DWShop.Application.Features.Catalog.Commands.Create
         {
             var catalog = _mapper.Map<CatalogEntity>(request);
 
-            catalog.CreatedBy = "Yael";
-            catalog.CreatedOn = DateTime.UtcNow;
-            catalog.LastModifiedBy = "Yael";
-
             await _repository.AddAsync(catalog);
 
             return await Result<int>.SuccessAsync(catalog.Id, "");
