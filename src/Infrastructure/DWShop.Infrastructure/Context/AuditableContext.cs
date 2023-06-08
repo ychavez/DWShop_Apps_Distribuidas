@@ -74,7 +74,7 @@ namespace DWShop.Infrastructure.Context
                     }
                 }
             }
-            foreach (var auditEntry in auditEntries.Where(_ => _.HasTemporaryProperties))
+            foreach (var auditEntry in auditEntries.Where(_ => !_.HasTemporaryProperties))
             {
                 AuditTrails.Add(auditEntry.ToAudit());
             }
