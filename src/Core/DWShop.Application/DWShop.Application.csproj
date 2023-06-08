@@ -21,10 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Behaviors\" />
     <Folder Include="Exceptions\" />
-    <Folder Include="Features\Catalog\Commands\" />
-    <Folder Include="Validators\" />
   </ItemGroup>
 
 </Project>

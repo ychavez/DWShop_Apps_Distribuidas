@@ -110,7 +110,7 @@
             return Task.FromResult(Success());
         }
 
-        public new static Task<Result<T>> SuccessAsync(T Data, string message)
+        public new static Task<Result<T>> SuccessAsync(T Data, string message="")
         {
             return Task.FromResult(Success(Data,message));
         }

@@ -1,4 +1,4 @@
-﻿
+﻿using DWShop.Application.Features.Catalog.Commands.Create;
 using DWShop.Application.Features.Catalog.Queries;
 using DWShop.Application.Responses;
 using DWShop.Shared.Wrapper;
@@ -11,5 +11,9 @@ namespace DWShop.Service.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IResult<IEnumerable<ProductResponse>>>>GetAll([FromQuery] GetCatalogQuery query)
             => Ok(await mediator.Send(query));
+
+        [HttpPost]
+        public async Task<ActionResult<IResult<int>>> CreateProduct([FromBody]CreateCatalogCommand command)
+            => Ok(await mediator.Send(command));
     }
 }
