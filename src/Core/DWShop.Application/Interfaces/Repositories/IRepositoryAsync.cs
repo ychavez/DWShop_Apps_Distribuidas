@@ -21,5 +21,6 @@ namespace DWShop.Application.Interfaces.Repositories
         Task UpdateAsync(T entity);
 
         Task DeleteAsync(T entity);
+        Task SaveChangesAsync();
     }
 }

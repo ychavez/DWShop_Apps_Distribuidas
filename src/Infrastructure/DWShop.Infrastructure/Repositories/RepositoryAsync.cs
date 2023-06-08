@@ -55,14 +55,12 @@ namespace DWShop.Infrastructure.Repositories
         public async Task<T> AddAsync(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
-            await _context.SaveChangesAsync();
             return entity;
         }
 
         public async Task UpdateAsync(T entity)
         {
             T entitySaved = await _context.Set<T>().FindAsync(entity.Id);
-
             _context.Entry(entitySaved!).CurrentValues.SetValues(entity);
         }
 
@@ -71,5 +69,8 @@ namespace DWShop.Infrastructure.Repositories
             _context.Set<T>().Remove(entity);
             return Task.CompletedTask;
         }
+
+        public async Task SaveChangesAsync() => 
+            await _context.SaveChangesAsync(CancellationToken.None);
     }
 }

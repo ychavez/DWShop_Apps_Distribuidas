@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Text.Json;
 
 namespace DWShop.Domain.Entities
 {
@@ -23,6 +24,23 @@ namespace DWShop.Domain.Entities
         public List<string> ChangedColumns { get; } = new();
 
         public bool HasTemporaryProperties => TemporaryProperties.Any();
+
+        public Audit ToAudit()
+        {
+            var audit = new Audit
+            {
+                UserId = UserId,
+                TableName = TableName,
+                Type = AuditType.ToString(),
+                DateTime = DateTime.UtcNow,
+                PrimaryKey = JsonSerializer.Serialize(KeyValues),
+                OldValues = OldValues.Any() ? JsonSerializer.Serialize(OldValues) : null,
+                NewValues = NewValues.Any() ? JsonSerializer.Serialize(NewValues) : null,
+                AffectedColumns = ChangedColumns.Any() ? JsonSerializer.Serialize(ChangedColumns) : null
+            };
+            return audit;
+        }
+
 
     }
 

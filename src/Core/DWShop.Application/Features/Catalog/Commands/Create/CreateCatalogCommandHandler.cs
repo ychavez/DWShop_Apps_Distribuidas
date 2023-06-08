@@ -27,6 +27,8 @@ namespace DWShop.Application.Features.Catalog.Commands.Create
 
             await _repository.AddAsync(catalog);
 
+            await _repository.SaveChangesAsync();
+
             return await Result<int>.SuccessAsync(catalog.Id, "");
         }
     }
