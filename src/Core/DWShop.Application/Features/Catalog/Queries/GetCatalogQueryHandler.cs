@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using AutoMapper;
+﻿using AutoMapper;
 using DWShop.Application.Interfaces.Repositories;
 using DWShop.Application.Responses.Catalog;
 using DWShop.Shared.Wrapper;
