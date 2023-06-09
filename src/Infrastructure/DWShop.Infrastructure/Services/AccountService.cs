@@ -21,8 +21,8 @@ namespace DWShop.Infrastructure.Services
             this.configuration = configuration;
         }
 
-        public async Task<bool> UserExists(string username)
-            => await userManager.Users.AnyAsync(x => x.UserName == username);
+        public async Task<bool> UserExists(string username, CancellationToken cancellationToken)
+            => await userManager.Users.AnyAsync(x => x.UserName == username, cancellationToken);
 
 
         public async Task<string> GetToken(DWUser user)

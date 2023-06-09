@@ -2,10 +2,13 @@
 using DWShop.Application.Features.Catalog.Queries;
 using DWShop.Application.Responses.Catalog;
 using DWShop.Shared.Wrapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DWShop.Service.Api.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class CatalogController : BaseApiController
     {
         [HttpGet]

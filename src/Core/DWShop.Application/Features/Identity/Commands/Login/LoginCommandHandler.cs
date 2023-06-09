@@ -27,24 +27,25 @@ namespace DWShop.Application.Features.Identity.Commands.Login
 
         public async Task<Result<LoginResponse>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            if (!await accountService.UserExists(request.UserName.ToLower()))
-                return await Result<LoginResponse>.FailAsync("Usuario no valido");
 
-            var user = await userManager.Users
-                .SingleAsync(x => x.UserName!.ToLower() == request.UserName.ToLower());
+                if (!await accountService.UserExists(request.UserName.ToLower(), cancellationToken))
+                    return await Result<LoginResponse>.FailAsync("Usuario no valido");
 
-            var result = await signInManager.CheckPasswordSignInAsync(user, request.Password, true);
+                var user = await userManager.Users
+                    .SingleAsync(x => x.UserName!.ToLower() == request.UserName.ToLower());
 
-            if (!result.Succeeded)
-                return await Result<LoginResponse>.FailAsync("Usuario no valido");
+                var result = await signInManager.CheckPasswordSignInAsync(user, request.Password, true);
 
-            var token = await accountService.GetToken(user);
+                if (!result.Succeeded)
+                    return await Result<LoginResponse>.FailAsync("Usuario no valido");
 
-            var loginResult = mapper.Map<LoginResponse>(user);
+                var token = await accountService.GetToken(user);
 
-            loginResult.Token = token;
+                var loginResult = mapper.Map<LoginResponse>(user);
 
-            return await Result<LoginResponse>.SuccessAsync(loginResult);
+                loginResult.Token = token;
+
+                return await Result<LoginResponse>.SuccessAsync(loginResult);
         }
     }
 }

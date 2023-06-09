@@ -1,12 +1,15 @@
 ﻿using DWShop.Application.Extensions;
+using DWShop.Application.Interfaces.Services;
 using DWShop.Domain.Entities;
 using DWShop.Infrastructure.Context;
 using DWShop.Infrastructure.Extensions;
 using DWShop.Service.Api.Middlewares;
+using DWShop.Service.Api.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System.Text;
 
 namespace DWShop.Service.Api
@@ -22,10 +25,45 @@ namespace DWShop.Service.Api
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+
+
+            builder.Services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc("v1", new OpenApiInfo { Title = "Tienda en linea DW", Version = "V1" });
+
+                x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = @"Coloca aqui tu token usando el esquema Bearer por ejemplo Bearer asdiajshdfklasjhfklaj",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                x.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                    {
+                     new OpenApiSecurityScheme
+                     {
+                        Reference = new OpenApiReference {
+                        Type = ReferenceType.SecurityScheme,
+                        Id = "Bearer",
+
+                     },
+
+                     Scheme = "oauth2",
+                     Name = "Bearer",
+                     In = ParameterLocation.Header
+
+                     },
+                     new List<string>()
+                    }
+                });
+            });
+
+
             builder.Services.AddApplicationLayer();
             builder.Services.AddRepositories();
-
+            builder.Services.AddScoped<ICurrentUserService, CurrentUserServices>();
             builder.Services.AddDbContext<DWShopContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
@@ -59,7 +97,7 @@ namespace DWShop.Service.Api
                 .AddSignInManager<SignInManager<DWUser>>()
                 .AddRoleValidator<RoleValidator<IdentityRole>>()
                 .AddEntityFrameworkStores<DWShopContext>();
-            
+
 
             var app = builder.Build();
 

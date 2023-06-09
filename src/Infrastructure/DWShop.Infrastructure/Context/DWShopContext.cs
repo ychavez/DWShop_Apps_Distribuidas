@@ -1,4 +1,5 @@
-﻿using DWShop.Domain.Contracts;
+﻿using DWShop.Application.Interfaces.Services;
+using DWShop.Domain.Contracts;
 using DWShop.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,8 +7,11 @@ namespace DWShop.Infrastructure.Context
 {
     public class DWShopContext : AuditableContext
     {
-        public DWShopContext(DbContextOptions options) : base(options)
+        private readonly ICurrentUserService currentUserService;
+
+        public DWShopContext(DbContextOptions options, ICurrentUserService currentUserService) : base(options)
         {
+            this.currentUserService = currentUserService;
         }
         public DbSet<Catalog> Catalogs { get; set; }
         public DbSet<Basket> Baskets { get; set; }
@@ -20,16 +24,16 @@ namespace DWShop.Infrastructure.Context
                 {
                     case EntityState.Added:
                         entry.Entity.CreatedOn = DateTime.UtcNow;
-                        entry.Entity.CreatedBy = "User";
+                        entry.Entity.CreatedBy = currentUserService.UserId;
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModifieOn = DateTime.UtcNow;
-                        entry.Entity.LastModifiedBy = "User";
+                        entry.Entity.LastModifiedBy = currentUserService.UserId;
                         break;
 
                 }
             }
-            return base.SaveChangesAsync("User",cancellationToken);
+            return base.SaveChangesAsync(currentUserService.UserId, cancellationToken);
         }
     }
 }
