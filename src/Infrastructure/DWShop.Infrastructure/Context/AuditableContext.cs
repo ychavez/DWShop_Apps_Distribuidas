@@ -14,13 +14,34 @@ namespace DWShop.Infrastructure.Context
 
         public DbSet<Audit> AuditTrails { get; set; }
 
-        public virtual async Task<int> SaveChangesAsync(string userId = null,
+        public virtual async Task<int> SaveChangesAsync(string userId,
             CancellationToken cancellationToken = new())
         {
             var auditEntries = onBeforeSavesChanges(userId);
             var result = await base.SaveChangesAsync(cancellationToken);
-            // TODO onbefore saves changes;
+            await OnAfterSaveChanges(auditEntries);
+
             return result;
+        }
+
+        private Task OnAfterSaveChanges(List<AuditEntry> auditEntries, CancellationToken  cancellationToken = new()) 
+        {
+            if (auditEntries is null || !auditEntries.Any())
+                return Task.CompletedTask;
+
+            foreach (var auditEntry in auditEntries)
+            {
+                foreach (var prop in auditEntry.TemporaryProperties)
+                {
+                    if (prop.Metadata.IsPrimaryKey())
+                        auditEntry.KeyValues[prop.Metadata.Name] = prop.CurrentValue;
+                    else
+                        auditEntry.NewValues[prop.Metadata.Name] = prop.CurrentValue;
+
+                }
+                AuditTrails.Add(auditEntry.ToAudit());
+            }
+            return SaveChangesAsync(cancellationToken);  
         }
 
         private List<AuditEntry> onBeforeSavesChanges(string userId)
