@@ -1,4 +1,4 @@
-﻿using DWShop.Application.Responses;
+﻿using DWShop.Application.Responses.Catalog;
 using DWShop.Shared.Wrapper;
 using MediatR;
 

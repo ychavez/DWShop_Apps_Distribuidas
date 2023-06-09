@@ -1,4 +1,4 @@
-﻿namespace DWShop.Application.Responses
+﻿namespace DWShop.Application.Responses.Catalog
 {
     public class ProductResponse
     {

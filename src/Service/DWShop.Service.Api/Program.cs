@@ -1,8 +1,13 @@
-﻿using DWShop.Infrastructure.Context;
-using Microsoft.EntityFrameworkCore;
-using DWShop.Application.Extensions;
+﻿using DWShop.Application.Extensions;
+using DWShop.Domain.Entities;
+using DWShop.Infrastructure.Context;
 using DWShop.Infrastructure.Extensions;
 using DWShop.Service.Api.Middlewares;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace DWShop.Service.Api
 {
@@ -21,8 +26,40 @@ namespace DWShop.Service.Api
             builder.Services.AddApplicationLayer();
             builder.Services.AddRepositories();
 
-            builder.Services.AddDbContext<DWShopContext>(options => 
+            builder.Services.AddDbContext<DWShopContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+            var key = Encoding.ASCII.GetBytes(builder.Configuration.GetValue<string>("Identity:Key")!);
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(x =>
+                {
+                    x.RequireHttpsMetadata = false;
+                    x.SaveToken = true;
+                    x.TokenValidationParameters = new()
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(key),
+                        ValidateIssuer = false,
+                        ValidateAudience = false
+                    };
+                });
+
+
+            builder.Services.AddIdentity<DWUser, IdentityRole>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = false;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+            })
+                .AddRoles<IdentityRole>()
+                .AddSignInManager<SignInManager<DWUser>>()
+                .AddRoleValidator<RoleValidator<IdentityRole>>()
+                .AddEntityFrameworkStores<DWShopContext>();
+            
 
             var app = builder.Build();
 
@@ -33,8 +70,10 @@ namespace DWShop.Service.Api
                 app.UseSwaggerUI();
             }
 
+            app.UseAuthentication();
+
             app.UseMiddleware<ErrorHandlerMiddleware>();
-            
+
             app.UseAuthorization();
 
 

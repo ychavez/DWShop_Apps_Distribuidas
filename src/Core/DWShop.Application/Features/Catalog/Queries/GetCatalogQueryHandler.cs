@@ -2,7 +2,7 @@
 using System.Security.Cryptography.X509Certificates;
 using AutoMapper;
 using DWShop.Application.Interfaces.Repositories;
-using DWShop.Application.Responses;
+using DWShop.Application.Responses.Catalog;
 using DWShop.Shared.Wrapper;
 using MediatR;
 using CatalogEntity = DWShop.Domain.Entities.Catalog;

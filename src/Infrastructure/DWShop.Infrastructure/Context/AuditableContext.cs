@@ -1,9 +1,11 @@
 ﻿using DWShop.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DWShop.Infrastructure.Context
 {
-    public abstract class AuditableContext : DbContext
+    public abstract class AuditableContext : IdentityDbContext<DWUser, IdentityRole, string>
     {
         public AuditableContext(DbContextOptions options) : base(options)
         {

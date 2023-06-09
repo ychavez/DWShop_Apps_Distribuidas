@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using DWShop.Application.Features.Catalog.Commands.Create;
-using DWShop.Application.Responses;
+using DWShop.Application.Responses.Catalog;
 using DWShop.Domain.Entities;
 
 namespace DWShop.Application.Mappings
