@@ -56,13 +56,14 @@ namespace DWShop.Infrastructure.Repositories
         {
             await _context.Set<T>().AddAsync(entity);
 
+
             return entity;
         }
 
-        public async Task UpdateAsync(T entity)
+        public Task UpdateAsync(T entity)
         {
-            T entitySaved = await _context.Set<T>().FindAsync(entity.Id);
-            _context.Entry(entitySaved!).CurrentValues.SetValues(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+            return Task.CompletedTask;
         }
 
         public Task DeleteAsync(T entity)
