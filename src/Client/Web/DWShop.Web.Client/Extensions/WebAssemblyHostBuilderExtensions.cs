@@ -1,5 +1,7 @@
 ﻿using Blazored.LocalStorage;
 using DWShop.Client.Infrastructure.Managers;
+using DWShop.Web.Infrastructure.Authentication;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 
@@ -19,6 +21,8 @@ namespace DWShop.Web.Client.Extensions
             builder.Services
                 .AddMudServices()
                 .AddBlazoredLocalStorage()
+                .AddScoped<DWStateProvider>()
+                .AddScoped<AuthenticationStateProvider,DWStateProvider>()
                 .AddManagers();
 
             return builder;
