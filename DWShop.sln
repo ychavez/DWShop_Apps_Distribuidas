@@ -19,19 +19,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{87D0838F-9EB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Mobile", "Mobile", "{BF09A39D-67D6-4E70-AB5B-FE106D8762FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Infrastructure", "src\Infrastructure\DWShop.Infrastructure\DWShop.Infrastructure.csproj", "{052648ED-F8B4-4418-9A2D-F7104B80D2F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Infrastructure", "src\Infrastructure\DWShop.Infrastructure\DWShop.Infrastructure.csproj", "{052648ED-F8B4-4418-9A2D-F7104B80D2F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Insfrastructure.Shared", "src\Infrastructure\DWShop.Insfrastructure.Shared\DWShop.Insfrastructure.Shared.csproj", "{980710DD-1FC2-4C2F-A998-E86981F3D5FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Insfrastructure.Shared", "src\Infrastructure\DWShop.Insfrastructure.Shared\DWShop.Insfrastructure.Shared.csproj", "{980710DD-1FC2-4C2F-A998-E86981F3D5FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Application", "src\Core\DWShop.Application\DWShop.Application.csproj", "{92F841FB-87DD-442B-8609-1D0905604CD2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Application", "src\Core\DWShop.Application\DWShop.Application.csproj", "{92F841FB-87DD-442B-8609-1D0905604CD2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Domain", "src\Core\DWShop.Domain\DWShop.Domain.csproj", "{8E535535-76A1-4CE6-8E2D-A9189EC9A5A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Domain", "src\Core\DWShop.Domain\DWShop.Domain.csproj", "{8E535535-76A1-4CE6-8E2D-A9189EC9A5A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Shared", "src\Shared\DWShop.Shared\DWShop.Shared.csproj", "{92D89714-B2BD-4246-AEBF-6DAF3E613FB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Shared", "src\Shared\DWShop.Shared\DWShop.Shared.csproj", "{92D89714-B2BD-4246-AEBF-6DAF3E613FB9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Service.Api", "src\Service\DWShop.Service.Api\DWShop.Service.Api.csproj", "{3C8B0499-0869-4AA3-97AE-B2C7D66E8BBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Service.Api", "src\Service\DWShop.Service.Api\DWShop.Service.Api.csproj", "{3C8B0499-0869-4AA3-97AE-B2C7D66E8BBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Test", "src\Test\DWShop.Test\DWShop.Test.csproj", "{71B9D94B-2830-4279-B1BA-115632F1FCAF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Test", "src\Test\DWShop.Test\DWShop.Test.csproj", "{71B9D94B-2830-4279-B1BA-115632F1FCAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Web.Client", "src\Client\Web\DWShop.Web.Client\DWShop.Web.Client.csproj", "{2693E0E6-EC1B-4969-BF35-DDE217195D91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Client.Infrastructure", "src\Client\DWShop.Client.Infrastructure\DWShop.Client.Infrastructure.csproj", "{8D3BE183-5BC2-4529-B3B6-691B689A154F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Web.Infrastructure", "src\Client\Web\DWShop.Web.Infrastructure\DWShop.Web.Infrastructure.csproj", "{AF2C9A1A-FEF2-4F21-8222-F23880552CBD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +73,18 @@ Global
 		{71B9D94B-2830-4279-B1BA-115632F1FCAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71B9D94B-2830-4279-B1BA-115632F1FCAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71B9D94B-2830-4279-B1BA-115632F1FCAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2693E0E6-EC1B-4969-BF35-DDE217195D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2693E0E6-EC1B-4969-BF35-DDE217195D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2693E0E6-EC1B-4969-BF35-DDE217195D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2693E0E6-EC1B-4969-BF35-DDE217195D91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D3BE183-5BC2-4529-B3B6-691B689A154F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D3BE183-5BC2-4529-B3B6-691B689A154F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D3BE183-5BC2-4529-B3B6-691B689A154F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D3BE183-5BC2-4529-B3B6-691B689A154F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF2C9A1A-FEF2-4F21-8222-F23880552CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF2C9A1A-FEF2-4F21-8222-F23880552CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF2C9A1A-FEF2-4F21-8222-F23880552CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF2C9A1A-FEF2-4F21-8222-F23880552CBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +99,9 @@ Global
 		{92D89714-B2BD-4246-AEBF-6DAF3E613FB9} = {2C07FC8C-1A1C-4ADD-9E7F-0680B728E76C}
 		{3C8B0499-0869-4AA3-97AE-B2C7D66E8BBC} = {F7CE2F4B-C791-4223-8066-F5C105040F90}
 		{71B9D94B-2830-4279-B1BA-115632F1FCAF} = {56EA2084-B9D4-4F8A-90BB-6BDA8BA64951}
+		{2693E0E6-EC1B-4969-BF35-DDE217195D91} = {87D0838F-9EBD-46D7-8900-DCDD9C85F39B}
+		{8D3BE183-5BC2-4529-B3B6-691B689A154F} = {EF79A060-8FAE-4167-885F-3B9591D8F3C5}
+		{AF2C9A1A-FEF2-4F21-8222-F23880552CBD} = {87D0838F-9EBD-46D7-8900-DCDD9C85F39B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {600C679B-039A-49CE-B573-A1A0B3A7566D}

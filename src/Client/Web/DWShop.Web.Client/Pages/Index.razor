@@ -1,0 +1,34 @@
+﻿@page "/"
+
+
+<MudText Typo="Typo.h6">MudBlazor is @Text</MudText>
+<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="ButtonOnClick">@ButtonText</MudButton>
+<MudCheckBox @bind-Checked="@Basic_CheckBox1"></MudCheckBox>
+<MudCheckBox @bind-Checked="@Basic_CheckBox2" Color="Color.Primary"></MudCheckBox>
+<MudCheckBox @bind-Checked="@Basic_CheckBox3" Color="Color.Secondary"></MudCheckBox>
+<MudCheckBox @bind-Checked="@Basic_CheckBox4" Disabled="true"></MudCheckBox>
+
+<MudAvatar Class="z-30 ma-n2" Color="Color.Primary" Size="Size.Large">M</MudAvatar>
+<MudAvatar Class="z-20 ma-n2" Color="Color.Secondary" Size="Size.Large">U</MudAvatar>
+<MudAvatar Class="z-10 ma-n2" Color="Color.Tertiary" Size="Size.Large">D</MudAvatar>
+
+
+@code {
+    public bool Basic_CheckBox1 { get; set; } = true;
+    public bool Basic_CheckBox2 { get; set; } = false;
+    public bool Basic_CheckBox3 { get; set; } = false;
+    public bool Basic_CheckBox4 { get; set; } = true;
+}
+
+@code {
+    public string Text { get; set; } = "????";
+    public string ButtonText { get; set; } = "Click Me";
+    public int ButtonClicked { get; set; }
+
+    void ButtonOnClick()
+    {
+        ButtonClicked += 1;
+        Text = $"Awesome x {ButtonClicked}";
+        ButtonText = "Click Me Again";
+    }
+}
