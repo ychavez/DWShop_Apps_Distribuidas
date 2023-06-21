@@ -17,9 +17,18 @@ namespace DWShop.Client.Infrastructure.Managers.Authentication
         }
         public async Task<IResult<LoginResponse>> Login(LoginCommand command)
         {
+            try
+            {
             var response = await _httpClient.PostAsJsonAsync(AuthenticationEndpoints.Login, command);
             var result = await response.ToResult<LoginResponse>();
             return result;
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 }

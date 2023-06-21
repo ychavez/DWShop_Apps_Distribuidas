@@ -9,15 +9,15 @@ using System.Net.Http.Headers;
 
 namespace DWShop.Web.Infrastructure.Services.Authentication.Login
 {
-    public class loginService
+    public class LoginService : ILoginService
     {
         private readonly IAuthenticationManager authenticationManager;
         private readonly ILocalStorageService localStorageService;
         private readonly AuthenticationStateProvider authenticationStateProvider;
         private readonly HttpClient httpClient;
 
-        public loginService(IAuthenticationManager authenticationManager, 
-            ILocalStorageService localStorageService, 
+        public LoginService(IAuthenticationManager authenticationManager,
+            ILocalStorageService localStorageService,
             AuthenticationStateProvider authenticationStateProvider,
             HttpClient httpClient)
         {
@@ -27,7 +27,7 @@ namespace DWShop.Web.Infrastructure.Services.Authentication.Login
             this.httpClient = httpClient;
         }
 
-        public async Task<IResult> Login(LoginCommand model) 
+        public async Task<IResult> Login(LoginCommand model)
         {
             var result = await authenticationManager.Login(model);
 

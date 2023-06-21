@@ -1,7 +1,12 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@using DWShop.Web.Client.Pages.Authentication
+@using Microsoft.AspNetCore.Components.Authorization
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
-        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+             <NotAuthorized>
+                 <Login/>
+             </NotAuthorized>
+        </AuthorizeRouteView>
     </Found>
     <NotFound>
         <PageTitle>Not found</PageTitle>

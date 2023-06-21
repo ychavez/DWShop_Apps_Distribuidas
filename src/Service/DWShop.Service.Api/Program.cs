@@ -115,24 +115,14 @@ namespace DWShop.Service.Api
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+
+            app.UseCors(x => x.AllowAnyMethod()
+                             .AllowAnyOrigin()
+                             .AllowAnyHeader());
 
             app.Run();
         }
     }
 }
 
-/*
- * 
- * 1.- use los principos de la arquitectura limpia ☻
- * 2.- queremos implementar los siguientes movimientos
- * 3.- Catalogo de productos, Canasta de productos, Lista de checkout
- * 4.- queremos tener campos de auditoria automatica
- * 5.- queremos tener una tabla de auditoria profunda
- * 6.- usar SQL Server con EntityFramework ☻
- * 7.- y utilizar los siguientes patrones de diseño
- *     CQRS, Repository, Unit of work ♥
- * 8.- modular, no dependencias y no codigo espagetti    
- * 
- * */
