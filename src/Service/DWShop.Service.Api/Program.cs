@@ -5,6 +5,7 @@ using DWShop.Infrastructure.Context;
 using DWShop.Infrastructure.Extensions;
 using DWShop.Service.Api.Middlewares;
 using DWShop.Service.Api.Services;
+using DWShop.Shared.Constants;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -31,13 +32,13 @@ namespace DWShop.Service.Api
             {
                 x.SwaggerDoc("v1", new OpenApiInfo { Title = "Tienda en linea DW", Version = "V1" });
 
-                x.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                x.AddSecurityDefinition(StorageConstants.Local.Scheme, new OpenApiSecurityScheme
                 {
                     Description = @"Coloca aqui tu token usando el esquema Bearer por ejemplo Bearer asdiajshdfklasjhfklaj",
                     Name = "Authorization",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.ApiKey,
-                    Scheme = "Bearer"
+                    Scheme = StorageConstants.Local.Scheme
                 });
 
                 x.AddSecurityRequirement(new OpenApiSecurityRequirement {
@@ -46,12 +47,12 @@ namespace DWShop.Service.Api
                      {
                         Reference = new OpenApiReference {
                         Type = ReferenceType.SecurityScheme,
-                        Id = "Bearer",
+                        Id = StorageConstants.Local.Scheme,
 
                      },
 
                      Scheme = "oauth2",
-                     Name = "Bearer",
+                     Name = StorageConstants.Local.Scheme,
                      In = ParameterLocation.Header
 
                      },

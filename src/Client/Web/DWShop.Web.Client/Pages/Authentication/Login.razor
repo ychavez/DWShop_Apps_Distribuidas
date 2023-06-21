@@ -1,0 +1,41 @@
+﻿@page "/login"
+
+<EditForm Model="@_TokenModel" OnValidSubmit="SubmitAsync">
+    <MudGrid>
+        <MudItem xs="12">
+            <div class="d-flex justify-center">
+                <img src="/icon-192.png" Size="Size.Large" style="width: 100px; height: 100px" />
+            </div>
+        </MudItem>
+        <MudItem xs="12">
+            <div class="d-flex justify-center">
+                <MudText Typo="Typo.h4">Tienda DW</MudText>
+            </div>
+        </MudItem>
+        <MudItem xs="12">
+            <div class="d-flex justify-center">
+                <MudText>Bienvenido a Tienda DW</MudText>
+            </div>
+        </MudItem>
+        <MudItem xs="12">
+            <MudTextField T="string" Label="Usuario" @bind-Value="_TokenModel.UserName" 
+                          For="@(()=> _TokenModel.UserName)"></MudTextField>
+        </MudItem>
+        <MudItem xs="12">
+            <MudTextField T="string" Label="Contraseña" InputType="InputType.Password" 
+                          @bind-Value="_TokenModel.Password"
+                          For="@(()=> _TokenModel.Password)"></MudTextField>
+        </MudItem>
+        <MudItem xs="12">
+            <MudButton ButtonType="ButtonType.Submit" Color="Color.Primary">Login</MudButton>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+
+
+
+
+
+}

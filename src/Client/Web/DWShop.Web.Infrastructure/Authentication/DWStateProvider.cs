@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using DWShop.Shared.Constants;
 using Microsoft.AspNetCore.Components.Authorization;
 using System.Security.Claims;
 using System.Text.Json;
@@ -15,9 +16,30 @@ namespace DWShop.Web.Infrastructure.Authentication
             this.httpClient = httpClient;
             this.localStorage = localStorage;
         }
+
+        public async Task StateChangedAsync() 
+        {
+            var authState = Task.FromResult(await GetAuthenticationStateAsync());
+
+            NotifyAuthenticationStateChanged(authState);
+        }
+
+
+
+        public void MaskAsLoggedOut() 
+        {
+            var anonymousUser = new ClaimsPrincipal(new ClaimsIdentity());
+
+            var authState = Task.FromResult(new AuthenticationState(anonymousUser));
+
+            NotifyAuthenticationStateChanged(authState);
+
+        }
+
+
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            var savedToken = await localStorage.GetItemAsync<string>("authToken");
+            var savedToken = await localStorage.GetItemAsync<string>(StorageConstants.Local.AuthToken);
             if (string.IsNullOrWhiteSpace(savedToken))
             {
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));

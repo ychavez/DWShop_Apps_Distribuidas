@@ -1,4 +1,5 @@
 ﻿using Blazored.LocalStorage;
+using DWShop.Shared.Constants;
 using System.Net.Http.Headers;
 
 namespace DWShop.Web.Infrastructure.Authentication
@@ -14,12 +15,12 @@ namespace DWShop.Web.Infrastructure.Authentication
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            if (request.Headers.Authorization?.Scheme != "Bearer")
+            if (request.Headers.Authorization?.Scheme != StorageConstants.Local.Scheme)
             {
-                var savedToken = await localStorageService.GetItemAsync<string>("authToken");
+                var savedToken = await localStorageService.GetItemAsync<string>(StorageConstants.Local.AuthToken);
                 if (!string.IsNullOrWhiteSpace(savedToken))
                 {
-                    request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", savedToken);
+                    request.Headers.Authorization = new AuthenticationHeaderValue(StorageConstants.Local.Scheme, savedToken);
                 }
 
             }

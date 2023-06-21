@@ -33,9 +33,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Service.Api", "src\S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Test", "src\Test\DWShop.Test\DWShop.Test.csproj", "{71B9D94B-2830-4279-B1BA-115632F1FCAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Web.Client", "src\Client\Web\DWShop.Web.Client\DWShop.Web.Client.csproj", "{2693E0E6-EC1B-4969-BF35-DDE217195D91}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Web.Client", "src\Client\Web\DWShop.Web.Client\DWShop.Web.Client.csproj", "{2693E0E6-EC1B-4969-BF35-DDE217195D91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DWShop.Client.Infrastructure", "src\Client\DWShop.Client.Infrastructure\DWShop.Client.Infrastructure.csproj", "{8D3BE183-5BC2-4529-B3B6-691B689A154F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Client.Infrastructure", "src\Client\DWShop.Client.Infrastructure\DWShop.Client.Infrastructure.csproj", "{8D3BE183-5BC2-4529-B3B6-691B689A154F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Web.Infrastructure", "src\Client\Web\DWShop.Web.Infrastructure\DWShop.Web.Infrastructure.csproj", "{AF2C9A1A-FEF2-4F21-8222-F23880552CBD}"
 EndProject
