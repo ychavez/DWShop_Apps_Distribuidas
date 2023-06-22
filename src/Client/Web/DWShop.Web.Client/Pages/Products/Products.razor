@@ -1,0 +1,39 @@
+﻿@page "/productos"
+@using DWShop.Application.Responses.Catalog;
+@using DWShop.Client.Infrastructure.Managers.Products.Get;
+
+<MudTable Items="@Elements">
+    <HeaderContent>
+        <MudTh>Nombre </MudTh>
+        <MudTh>Categoria </MudTh>
+        <MudTh>Descripcion </MudTh>
+        <MudTh>Resumen </MudTh>
+        <MudTh>Precio </MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="Nombre">@context.Name</MudTd>
+        <MudTd DataLabel="Categoria">@context.Category</MudTd>
+        <MudTd DataLabel="Descripcion">@context.Description</MudTd>
+        <MudTd DataLabel="Resumen">@context.Summary</MudTd>
+        <MudTd DataLabel="Precio">@context.Price</MudTd>
+    </RowTemplate>
+
+</MudTable>
+
+@code {
+
+    [Inject]
+    public IGetproductsManager productManager { get; set; }
+
+    public IEnumerable<ProductResponse> Elements { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var producResponse = await productManager.GetAllProducts();
+        if (producResponse.Succeded)
+        {
+            Elements = producResponse.Data;
+        }
+    }
+
+}
