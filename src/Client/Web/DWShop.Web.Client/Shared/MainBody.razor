@@ -1,0 +1,28 @@
+﻿<MudAppBar>
+    <MudIconButton Icon="@Icons.Material.Filled.Apps" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
+    <MudSpacer />
+    <MudIconButton Icon="@Icons.Material.Filled.Brightness6" Color="Color.Inherit"  Target="_blank" />
+</MudAppBar>
+
+<MudDrawer @bind-Open="@navOpen" ClipMode="DrawerClipMode.Docked">
+    <NavMenu />
+</MudDrawer>
+
+<MudMainContent>
+    <MudContainer>
+        @ChildContent
+    </MudContainer>
+</MudMainContent>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    public bool navOpen { get; set; } = true;
+
+    void ToggleDrawer()
+    {
+        navOpen = !navOpen;
+    }
+
+}
