@@ -5,11 +5,11 @@ using DWShop.Shared.Wrapper;
 
 namespace DWShop.Client.Infrastructure.Managers.Products.Get
 {
-    public class GetproductsManager : IGetproductsManager
+    public class GetProductsManager : IGetProductsManager
     {
         private readonly HttpClient httpClient;
 
-        public GetproductsManager(HttpClient httpClient)
+        public GetProductsManager(HttpClient httpClient)
         {
             this.httpClient = httpClient;
         }

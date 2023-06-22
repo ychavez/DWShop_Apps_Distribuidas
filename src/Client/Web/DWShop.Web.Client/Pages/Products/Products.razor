@@ -1,6 +1,10 @@
 ﻿@page "/productos"
 @using DWShop.Application.Responses.Catalog;
 @using DWShop.Client.Infrastructure.Managers.Products.Get;
+@using System.Runtime.CompilerServices
+@attribute [Authorize]
+
+<MudText Typo="Typo.h2">Productos</MudText>
 
 <MudTable Items="@Elements">
     <HeaderContent>
@@ -9,6 +13,7 @@
         <MudTh>Descripcion </MudTh>
         <MudTh>Resumen </MudTh>
         <MudTh>Precio </MudTh>
+        <MudTh>Acciones </MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="Nombre">@context.Name</MudTd>
@@ -16,14 +21,20 @@
         <MudTd DataLabel="Descripcion">@context.Description</MudTd>
         <MudTd DataLabel="Resumen">@context.Summary</MudTd>
         <MudTd DataLabel="Precio">@context.Price</MudTd>
+        <MudTd DataLabel="Acciones">
+            <MudMenu Label="Acciones" EndIcon="@Icons.Material.Filled.ArrowDropDown">
+                <MudMenuItem @onclick="@(() =>InvokeModal())">Editar</MudMenuItem>
+                <MudMenuItem>Eliminar</MudMenuItem>
+            </MudMenu>
+        </MudTd>
     </RowTemplate>
-
 </MudTable>
+
 
 @code {
 
     [Inject]
-    public IGetproductsManager productManager { get; set; }
+    public IGetProductsManager productManager { get; set; }
 
     public IEnumerable<ProductResponse> Elements { get; set; }
 
@@ -34,6 +45,12 @@
         {
             Elements = producResponse.Data;
         }
+    }
+
+    private async Task InvokeModal()
+    {
+        var options = new DialogOptions() { CloseButton = true };
+        _DialogService.Show<AddEditProduct>("Editar", options);
     }
 
 }
