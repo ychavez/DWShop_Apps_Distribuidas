@@ -2,6 +2,7 @@
 @using System.Net.Http.Json
 @using DWShop.Client.Infrastructure.Managers.Authentication;
 @using DWShop.Web.Infrastructure.Authentication;
+@using DWShop.Web.Infrastructure.Services.ClientPreference;
 @using Microsoft.AspNetCore.Authorization;
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
@@ -16,3 +17,4 @@
 @inject DWStateProvider dWStateProvider
 @inject IAuthorizationService _authorizationService
 @inject IAuthenticationManager _authenticationManager
+@inject ClientPreferenceService _clientPreference;

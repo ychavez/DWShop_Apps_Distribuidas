@@ -1,7 +1,8 @@
 ﻿<MudAppBar>
     <MudIconButton Icon="@Icons.Material.Filled.Apps" Color="Color.Inherit" Edge="Edge.Start" OnClick="@ToggleDrawer" />
     <MudSpacer />
-    <MudIconButton Icon="@Icons.Material.Filled.Brightness6" Color="Color.Inherit"  Target="_blank" />
+    <MudIconButton Icon="@Icons.Material.Filled.Brightness6" Color="Color.Inherit"  Target="_blank" 
+    OnClick="@((e) => DarkMode())" />
 </MudAppBar>
 
 <MudDrawer @bind-Open="@navOpen" ClipMode="DrawerClipMode.Docked">
@@ -18,11 +19,18 @@
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
+    [Parameter]
+    public EventCallback OnDarkMode { get; set; }
+
     public bool navOpen { get; set; } = true;
+
+    public async Task DarkMode()
+    {
+        await OnDarkMode.InvokeAsync();    
+    }
 
     void ToggleDrawer()
     {
         navOpen = !navOpen;
     }
-
 }

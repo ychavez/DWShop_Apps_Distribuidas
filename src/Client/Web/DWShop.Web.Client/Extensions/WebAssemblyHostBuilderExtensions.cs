@@ -3,6 +3,7 @@ using DWShop.Client.Infrastructure.Managers;
 using DWShop.Client.Infrastructure.Routes;
 using DWShop.Web.Infrastructure.Authentication;
 using DWShop.Web.Infrastructure.Services.Authentication.Login;
+using DWShop.Web.Infrastructure.Services.ClientPreference;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -27,6 +28,7 @@ namespace DWShop.Web.Client.Extensions
             builder.Services
                 .AddMudServices()
                 .AddBlazoredLocalStorage()
+                .AddScoped<ClientPreferenceService>()
                 .AddScoped<DWStateProvider>()
                 .AddScoped<AuthenticationStateProvider, DWStateProvider>()
                 .AddManagers()
