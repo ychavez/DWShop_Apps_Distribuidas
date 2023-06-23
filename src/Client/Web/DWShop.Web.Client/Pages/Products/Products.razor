@@ -2,6 +2,7 @@
 @using DWShop.Application.Responses.Catalog;
 @using DWShop.Client.Infrastructure.Managers.Products.Get;
 @using System.Runtime.CompilerServices
+@using DWShop.Application.Features.Catalog.Commands.Update
 @attribute [Authorize]
 
 <MudText Typo="Typo.h2">Productos</MudText>
@@ -23,7 +24,7 @@
         <MudTd DataLabel="Precio">@context.Price</MudTd>
         <MudTd DataLabel="Acciones">
             <MudMenu Label="Acciones" EndIcon="@Icons.Material.Filled.ArrowDropDown">
-                <MudMenuItem @onclick="@(() =>InvokeModal())">Editar</MudMenuItem>
+                <MudMenuItem @onclick="@(() =>InvokeModal(@context.Id))">Editar</MudMenuItem>
                 <MudMenuItem>Eliminar</MudMenuItem>
             </MudMenu>
         </MudTd>
@@ -40,17 +41,51 @@
 
     protected override async Task OnInitializedAsync()
     {
-        var producResponse = await productManager.GetAllProducts();
-        if (producResponse.Succeded)
-        {
-            Elements = producResponse.Data;
-        }
+        await Reset();
     }
 
-    private async Task InvokeModal()
+    private async Task Reset()
     {
-        var options = new DialogOptions() { CloseButton = true };
-        _DialogService.Show<AddEditProduct>("Editar", options);
+        var productResponse = await productManager.GetAllProducts();
+        if (productResponse.Succeded)
+        {
+            Elements = productResponse.Data;
+        }
+
+    }
+
+    private async Task InvokeModal(int id = 0)
+    {
+        var parameters = new DialogParameters();
+        if (id != 0)
+        {
+            var product = Elements.FirstOrDefault(x => x.Id == id);
+
+            if (product is not null)
+            {
+                parameters.Add(nameof(AddEditProduct.EditProductCommand), new UpdateCatalogCommand()
+                    {
+                        Id = id,
+                        Category = product.Category,
+                        Description = product.Description,
+                        Name = product.Name,
+                        PhotoURL = product.PhotoURL,
+                        Price = product.Price,
+                        Summary = product.Summary
+                    });
+
+                var options = new DialogOptions() { CloseButton = true };
+
+                var dialog =  _DialogService.Show<AddEditProduct>("Editar", parameters, options);
+
+                var result = await dialog.Result;
+
+                if (!result.Cancelled)
+                    await Reset();
+            
+
+            }
+        }
     }
 
 }
