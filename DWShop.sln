@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Client.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DWShop.Web.Infrastructure", "src\Client\Web\DWShop.Web.Infrastructure\DWShop.Web.Infrastructure.csproj", "{AF2C9A1A-FEF2-4F21-8222-F23880552CBD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwShop.Web.Library", "src\Client\Web\DwShop.Web.Library\DwShop.Web.Library.csproj", "{6D046B35-1577-4CAA-ADE5-4D87EFD216EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -85,6 +87,10 @@ Global
 		{AF2C9A1A-FEF2-4F21-8222-F23880552CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF2C9A1A-FEF2-4F21-8222-F23880552CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF2C9A1A-FEF2-4F21-8222-F23880552CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D046B35-1577-4CAA-ADE5-4D87EFD216EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D046B35-1577-4CAA-ADE5-4D87EFD216EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D046B35-1577-4CAA-ADE5-4D87EFD216EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D046B35-1577-4CAA-ADE5-4D87EFD216EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -102,6 +108,7 @@ Global
 		{2693E0E6-EC1B-4969-BF35-DDE217195D91} = {87D0838F-9EBD-46D7-8900-DCDD9C85F39B}
 		{8D3BE183-5BC2-4529-B3B6-691B689A154F} = {EF79A060-8FAE-4167-885F-3B9591D8F3C5}
 		{AF2C9A1A-FEF2-4F21-8222-F23880552CBD} = {87D0838F-9EBD-46D7-8900-DCDD9C85F39B}
+		{6D046B35-1577-4CAA-ADE5-4D87EFD216EC} = {87D0838F-9EBD-46D7-8900-DCDD9C85F39B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {600C679B-039A-49CE-B573-A1A0B3A7566D}
