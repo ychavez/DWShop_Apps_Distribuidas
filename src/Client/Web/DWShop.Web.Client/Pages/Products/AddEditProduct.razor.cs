@@ -26,5 +26,12 @@ namespace DWShop.Web.Client.Pages.Products
         }
 
 
+        private async Task InvalidSubmit() 
+        {
+
+            _snackBar.Add("Error", Severity.Error);
+        }
+
+
     }
 }

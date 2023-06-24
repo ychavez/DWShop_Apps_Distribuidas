@@ -47,7 +47,7 @@ namespace DWShop.Infrastructure.Services
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(15),
+                Expires = DateTime.UtcNow.AddMinutes(2),
                 SigningCredentials =
                 new SigningCredentials(signinKey, SecurityAlgorithms.HmacSha256Signature)
             };

@@ -17,7 +17,7 @@ namespace DWShop.Web.Infrastructure.Authentication
             this.localStorage = localStorage;
         }
 
-        public async Task StateChangedAsync() 
+        public async Task StateChangedAsync()
         {
             var authState = Task.FromResult(await GetAuthenticationStateAsync());
 
@@ -26,7 +26,7 @@ namespace DWShop.Web.Infrastructure.Authentication
 
 
 
-        public void MaskAsLoggedOut() 
+        public void MaskAsLoggedOut()
         {
             var anonymousUser = new ClaimsPrincipal(new ClaimsIdentity());
 
@@ -45,14 +45,25 @@ namespace DWShop.Web.Infrastructure.Authentication
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
             }
 
-            var state = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(GetClaimsFromJwt(savedToken),"jwt")));
+            var state = new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity(GetClaimsFromJwt(savedToken), "jwt")));
 
-            return state;
+            var user = state.User;
+            string? exp;
+            exp = user.FindFirst(x => x.Type == "exp")?.Value;
+
+            var expTime = DateTimeOffset.FromUnixTimeSeconds(Convert.ToInt64(exp));
+            var diff = expTime - DateTimeOffset.UtcNow;
+            if (diff.TotalMinutes >= 1)
+                return state;
+
+            await localStorage.RemoveItemAsync(StorageConstants.Local.AuthToken);
+            return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+
         }
 
         private IEnumerable<Claim> GetClaimsFromJwt(string jwt)
         {
-            byte[] ParseBase64(string payload) 
+            byte[] ParseBase64(string payload)
             {
                 payload = payload.Trim().Replace('-', '+').Replace('_', '/');
                 var base64 = payload.PadRight(payload.Length + (4 - payload.Length % 4) % 4, '=');
@@ -76,7 +87,11 @@ namespace DWShop.Web.Infrastructure.Authentication
                     }
                     else
                         claims.Add(new Claim(ClaimTypes.Role, roles!.ToString()));
+
+                    keyValuePairs.Remove(ClaimTypes.Role);
                 }
+
+                claims.AddRange(keyValuePairs.Select(x => new Claim(x.Key, x.Value.ToString()!)));
             }
             return claims;
         }

@@ -7,7 +7,7 @@ namespace DWShop.Application.Validators.Catalog.Commands.Create
     {
         public UpdateCatalogCommandValidator()
         {
-            RuleFor(x => x.Price).GreaterThan(0);
+            RuleFor(x => x.Price).GreaterThan(0).WithMessage("No puedes regalar las cosas, ponle precio!");
             RuleFor(x => x.Description).MinimumLength(10).MaximumLength(100).NotNull();
             RuleFor(x => x.Category).MinimumLength(10).MaximumLength(20).NotNull();
             RuleFor(x => x.Id).GreaterThan(0);
