@@ -16,5 +16,6 @@ namespace DWShop.Web.Client
                 
             await builder.Build().RunAsync();
         }
+
     }
 }
