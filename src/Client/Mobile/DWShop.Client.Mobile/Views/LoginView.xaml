@@ -13,11 +13,11 @@
         <Image Source="Images/dotnet_bot" HorizontalOptions="Center" VerticalOptions="Center"/>
 
         <VerticalStackLayout Grid.Row="1" Margin="20">
-            <Entry Placeholder="Usuario"/>
-            <Entry Placeholder="Contraseña" IsPassword="True"/>
+            <Entry Placeholder="Usuario" Text="{Binding LoginModel.UserName}"/>
+            <Entry Placeholder="Contraseña" IsPassword="True" Text="{Binding LoginModel.Password}"/>
         </VerticalStackLayout>
 
-        <Button Text="Iniciar sesion" Grid.Row="2" />
+        <Button Text="Iniciar sesion" Grid.Row="2" Command="{Binding LoginCommand}" />
 
     </Grid>
 

@@ -4,11 +4,10 @@ namespace DWShop.Client.Mobile
 {
     public partial class App : Microsoft.Maui.Controls.Application
     {
-        public App()
+        public App(LoginView  loginView)
         {
             InitializeComponent();
-
-            MainPage = new LoginView();
+            MainPage = loginView;
         }
     }
 }
