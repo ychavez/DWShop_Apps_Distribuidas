@@ -2,7 +2,9 @@
 using DWShop.Client.Infrastructure.Managers.Authentication;
 using DWShop.Client.Mobile.Models;
 using DWShop.Client.Mobile.ViewModels.Base;
+using DWShop.Client.Mobile.Views;
 using DWShop.Shared.Constants;
+using DWShop.Shared.Wrapper;
 using Microsoft.Maui.Controls;
 using System.Net.Http.Headers;
 using System.Windows.Input;
@@ -24,8 +26,10 @@ namespace DWShop.Client.Mobile.ViewModels
 
 
         public LoginViewModel(IAuthenticationManager authenticationManager, LoginModel loginModel,
-            HttpClient httpClient)
+            HttpClient httpClient, PropductListView propductListView)
         {
+
+
             this.authenticationManager = authenticationManager;
             this.loginModel = loginModel;
             LoginCommand = new Command(async () =>
@@ -41,13 +45,15 @@ namespace DWShop.Client.Mobile.ViewModels
                 {
                     await SecureStorage.Default.SetAsync("Token", result.Data.Token);
 
-                    httpClient.DefaultRequestHeaders.Authorization = 
+                    httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue(StorageConstants.Local.Scheme, result.Data.Token);
+
+                    Microsoft.Maui.Controls.Application.Current.MainPage = propductListView;
                     return;
                 }
 
                 await Microsoft.Maui.Controls.Application.Current.MainPage.DisplayAlert("Error al iniciar",
-                   result.Messages.First(),"Ok");
+                   result.Messages.First(), "Ok");
 
             });
         }
