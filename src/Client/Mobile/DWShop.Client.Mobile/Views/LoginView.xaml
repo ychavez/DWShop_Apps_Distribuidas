@@ -3,10 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DWShop.Client.Mobile.Views.LoginView"
              Title="LoginView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Source="Images/dotnet_bot" HorizontalOptions="Center" VerticalOptions="Center"/>
+
+        <VerticalStackLayout Grid.Row="1" Margin="20">
+            <Entry Placeholder="Usuario"/>
+            <Entry Placeholder="Contraseña" IsPassword="True"/>
+        </VerticalStackLayout>
+
+        <Button Text="Iniciar sesion" Grid.Row="2" />
+
+    </Grid>
+
 </ContentPage>

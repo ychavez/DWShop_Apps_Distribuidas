@@ -1,4 +1,6 @@
-﻿namespace DWShop.Client.Mobile
+﻿using DWShop.Client.Mobile.Views;
+
+namespace DWShop.Client.Mobile
 {
     public partial class App : Microsoft.Maui.Controls.Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new LoginView();
         }
     }
 }
