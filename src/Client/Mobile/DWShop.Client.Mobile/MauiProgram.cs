@@ -21,7 +21,8 @@ namespace DWShop.Client.Mobile
                 })
                 .RegisterManagers()
                 .RegisterViews()
-                .RegisterViewModels();
+                .RegisterViewModels()
+                .RegisterModels();
 
             builder.Services.AddScoped(sp => new HttpClient()
                 { BaseAddress = new Uri(BaseConfiguration.BaseAddress) });
