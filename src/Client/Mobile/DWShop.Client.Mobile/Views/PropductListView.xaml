@@ -4,8 +4,6 @@
              x:Class="DWShop.Client.Mobile.Views.PropductListView"
              Title="PropductListView">
     <VerticalStackLayout>
-
- 
         <ListView IsPullToRefreshEnabled="True"
                   IsRefreshing="{Binding IsBusy}" 
                   ItemsSource="{Binding Products}" 

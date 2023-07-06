@@ -1,10 +1,12 @@
 ﻿using DWShop.Client.Mobile.ViewModels.Base;
+using SQLite;
 
 namespace DWShop.Client.Mobile.Models
 {
     public class ProductModel: ObservableObject
     {
         private int id;
+        [PrimaryKey]
         public int Id
         {
             get => id;

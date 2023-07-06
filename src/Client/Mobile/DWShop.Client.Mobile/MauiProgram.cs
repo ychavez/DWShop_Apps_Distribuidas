@@ -1,6 +1,7 @@
 ﻿using DWShop.Client.Infrastructure.Managers.Authentication;
 using DWShop.Client.Infrastructure.Managers.Products.Get;
 using DWShop.Client.Infrastructure.Routes;
+using DWShop.Client.Mobile.Context;
 using DWShop.Client.Mobile.Models;
 using DWShop.Client.Mobile.Services;
 using DWShop.Client.Mobile.ViewModels;
@@ -40,6 +41,7 @@ namespace DWShop.Client.Mobile
         private static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
         {
             mauiAppBuilder.Services.AddTransient<UtilityService>();
+            mauiAppBuilder.Services.AddTransient<DataContext>();
             return mauiAppBuilder;
         }
 
@@ -56,6 +58,8 @@ namespace DWShop.Client.Mobile
             appBuilder.Services.AddTransient<LoginView>();
             appBuilder.Services.AddTransient<PropductListView>();
             appBuilder.Services.AddTransient<ProductView>();
+            appBuilder.Services.AddTransient<MainTabbedPage>();
+            appBuilder.Services.AddTransient<BasketView>();
             return appBuilder;
         }
 
@@ -64,6 +68,7 @@ namespace DWShop.Client.Mobile
             mauiAppBuilder.Services.AddTransient<LoginViewModel>();
             mauiAppBuilder.Services.AddTransient<ProductViewModel>();
             mauiAppBuilder.Services.AddTransient<ProductListViewmodel>();
+            mauiAppBuilder.Services.AddTransient<BasketViewModel>();
             return mauiAppBuilder;
         }
 
