@@ -19,6 +19,7 @@ namespace DWShop.Client.Mobile.ViewModels
         private ObservableCollection<ProductModel> products = new();
 
         public ICommand DetailCommand { get; set; }
+        public ICommand RefreshCommand { get; set; }
 
         public ObservableCollection<ProductModel> Products
         {
@@ -28,7 +29,7 @@ namespace DWShop.Client.Mobile.ViewModels
 
         public ProductListViewmodel(ProductModel productModel,
             IGetProductsManager productsManager,
-            UtilityService utilityService, 
+            UtilityService utilityService,
             ProductView productView)
         {
             this.productModel = productModel;
@@ -42,13 +43,14 @@ namespace DWShop.Client.Mobile.ViewModels
                 });
 
             DetailCommand = new Command<ProductModel>(ShowDetail);
+            RefreshCommand = new Command(async x => { await LoadProducts(); });
         }
 
 
         public void ShowDetail(ProductModel productModel)
         {
             Navigation.PushAsync(productView);
-            WeakReferenceMessenger.Default.Send(new ProductDetailMessage {Data = productModel });
+            WeakReferenceMessenger.Default.Send(new ProductDetailMessage { Data = productModel });
         }
 
         public async Task LoadProducts()
