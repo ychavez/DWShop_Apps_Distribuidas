@@ -4,24 +4,27 @@
              x:Class="DWShop.Client.Mobile.Views.PropductListView"
              Title="PropductListView">
     <VerticalStackLayout>
+
         <ActivityIndicator Color="Blue" IsRunning="False"/>
-        <ListView IsPullToRefreshEnabled="True" IsRefreshing="False">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="3*"/>
-                            </Grid.ColumnDefinitions>
+        <ListView IsPullToRefreshEnabled="True" IsRefreshing="False" ItemsSource="{Binding Products}" 
+                  RowHeight="100" ItemTapped="ListView_ItemTapped" >
+            <ListView.ItemTemplate >
+                <DataTemplate >
+                    <ViewCell >
+                        <Frame Margin="3" HasShadow="True" CornerRadius="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image Aspect="AspectFill" Source="{Binding PhotoURL}"></Image>
 
-                            <Image Aspect="AspectFill"></Image>
-
-                            <VerticalStackLayout Grid.Column="1">
-                                <Label Text="Nombre"/>
-                                <Label Text="Precio"/>
-                            </VerticalStackLayout>
-                        </Grid>
+                                <VerticalStackLayout Grid.Column="1" >
+                                    <Label Text="{Binding ProductName}"/>
+                                    <Label Text="{Binding Price}"/>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

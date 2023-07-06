@@ -1,4 +1,5 @@
-﻿using DWShop.Application.Features.Identity.Commands.Login;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using DWShop.Application.Features.Identity.Commands.Login;
 using DWShop.Client.Infrastructure.Managers.Authentication;
 using DWShop.Client.Mobile.Models;
 using DWShop.Client.Mobile.ViewModels.Base;
@@ -28,8 +29,6 @@ namespace DWShop.Client.Mobile.ViewModels
         public LoginViewModel(IAuthenticationManager authenticationManager, LoginModel loginModel,
             HttpClient httpClient, PropductListView propductListView)
         {
-
-
             this.authenticationManager = authenticationManager;
             this.loginModel = loginModel;
             LoginCommand = new Command(async () =>
@@ -48,7 +47,9 @@ namespace DWShop.Client.Mobile.ViewModels
                     httpClient.DefaultRequestHeaders.Authorization =
                     new AuthenticationHeaderValue(StorageConstants.Local.Scheme, result.Data.Token);
 
-                    Microsoft.Maui.Controls.Application.Current.MainPage = propductListView;
+                    Microsoft.Maui.Controls.Application.Current.MainPage = new NavigationPage(propductListView);
+                    // cargar productos
+                    WeakReferenceMessenger.Default.Send<string>("Cargar productos");
                     return;
                 }
 

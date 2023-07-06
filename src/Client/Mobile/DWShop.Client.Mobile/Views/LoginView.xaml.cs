@@ -4,11 +4,14 @@ namespace DWShop.Client.Mobile.Views;
 
 public partial class LoginView : ContentPage
 {
-	public LoginView(LoginViewModel loginViewModel)
+    private readonly LoginViewModel loginViewModel;
+
+    public LoginView(LoginViewModel loginViewModel)
 	{
 		InitializeComponent();
 
 		BindingContext = loginViewModel;
 		loginViewModel.Navigation = Navigation;
-	}
+        this.loginViewModel = loginViewModel;
+    }
 }
