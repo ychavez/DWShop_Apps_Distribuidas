@@ -43,5 +43,14 @@
         <Button Text="Agregar a canasta" 
                 Command="{Binding AddToBasketCommand}"/>
 
+
+        <Button Text="Tomar foto" 
+                Command="{Binding TakePhotoCommand}"/>
+
+        <Button Text="Prender camara" 
+                Command="{Binding FlashCommand}"/>
+
+        
+
     </VerticalStackLayout>
 </ContentPage>

@@ -9,5 +9,6 @@
         public string Summary { get; set; } = null!;
         public decimal Price { get; set; }
         public string? PhotoURL { get; set; }
+
     }
 }
