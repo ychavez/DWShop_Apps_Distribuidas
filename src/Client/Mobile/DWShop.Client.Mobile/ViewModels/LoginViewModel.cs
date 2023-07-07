@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Messaging;
 using DWShop.Application.Features.Identity.Commands.Login;
 using DWShop.Client.Infrastructure.Managers.Authentication;
+using DWShop.Client.Mobile.Messages;
 using DWShop.Client.Mobile.Models;
 using DWShop.Client.Mobile.ViewModels.Base;
 using DWShop.Client.Mobile.Views;
@@ -50,6 +51,8 @@ namespace DWShop.Client.Mobile.ViewModels
                     Microsoft.Maui.Controls.Application.Current.MainPage = new NavigationPage(mainTabbedPage);
                     // cargar productos
                     WeakReferenceMessenger.Default.Send<string>("Cargar productos");
+
+                    WeakReferenceMessenger.Default.Send(new RefreshBasketMessage());
                     return;
                 }
 

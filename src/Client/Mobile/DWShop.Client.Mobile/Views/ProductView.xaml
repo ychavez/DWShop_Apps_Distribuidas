@@ -3,16 +3,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DWShop.Client.Mobile.Views.ProductView"
              Title="ProductView">
+    <ContentPage.Resources>
+
+        <!--<Style x:Key="labelProductTitle" TargetType="Label">
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="TextColor" Value="LawnGreen"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+
+        <Style TargetType="Label">
+           
+            <Setter Property="TextColor" Value="Black"/>
+           
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="TextColor" Value="Black"/>
+            <Setter Property="BackgroundColor" Value="Red"/>
+
+        </Style>-->
+
+    </ContentPage.Resources>
     <VerticalStackLayout>
         <Image Source="{Binding Product.PhotoURL}" HeightRequest="200"/>
 
-        <Label Text="{Binding Product.ProductName}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"
+        <Label Text="{Binding Product.ProductName}" 
+            
+               HorizontalOptions="CenterAndExpand"
                Margin="10"/>
 
-        <Label Text="{Binding Product.Price, StringFormat='Precio: {0:C}'}" FontAttributes="Bold" HorizontalOptions="CenterAndExpand"
-               Margin="10"/>
 
-        <Button Text="Agregar a canasta"/>
+
+
+        <Label Text="{Binding Product.Price, StringFormat='Precio: {0:C}'}" 
+               FontAttributes="Bold" HorizontalOptions="Center"/>
+
+
+        <Button Text="Agregar a canasta" 
+                Command="{Binding AddToBasketCommand}"/>
 
     </VerticalStackLayout>
 </ContentPage>
